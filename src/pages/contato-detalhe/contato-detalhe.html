@@ -1,0 +1,33 @@
+<!--
+  Generated template for the ContatoDetalhePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>contato-detalhe</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form>
+    <ion-item>
+      <ion-label>e-mail</ion-label>
+      <ion-input type="text" [(ngModel)]="contato.email" name="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="contato.nome" name="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>CEP</ion-label>
+      <ion-input type="text" [(ngModel)]="contato.cep" name="cep"></ion-input>
+    </ion-item>
+    <button ion-button color="secundary" block (click)="confirmaContato()">Confirma</button>
+    <button ion-button color="danger" block (click)="cancelaContato()">Cancela</button>
+  </form>
+</ion-content>

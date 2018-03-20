@@ -1,0 +1,79 @@
+- /HOOKS
+
+  São scripts especiais que podem ser adicionados por desenvolvedores de aplicativos
+  e plugins ou mesmo pelo seu proprio sistema de compilação para personalizar
+  comandos cordova. Você pode ter uma ferramenta personalizada que verifica a formatação
+  especiais a formatação do codigo em seu arquivo javascirpt. E, voce gostaria de executar
+  essa ferramenta ante sde cada compilação.
+
+- /NODE_MODULES
+
+  Pasta onde serão armazenados todos os pacotes Nodejs necessarios para a aplicação.
+
+- /RESOURCES
+
+  Pasta que armazena os recursos (imagens, icones e etc) especificos de cada plataforma.
+
+- /SRC
+
+  Pasta do codigo fonte do projeto
+
+- /SRC/APP
+
+  Pasta que contem o fonte do app. Este é o modulo principal da aplicação, que vai
+  ser o startup e configurações iniciais.
+
+- /SRC/THEME
+
+  Arquivos css e scss. Aqui podem ser adicionados arquivos para modificação de css e scss.
+  Aqui, por exemplo podem ser colocadas cores e comportamentos especificos de componentes.
+
+- /SRC/*
+
+  Outras subpastas podem ser adionadas à pasta src. Por exemplo, providers, serviços e
+  modelos de dados.
+
+- /WWW
+
+  Pasta onde é feito o "Deploy" da aplicação. Aqui os arquivos são codificados para serem
+  executados diretamente num navegador.
+
+
+-*** Arquivos especiais e importantes ***-
+
+- /SRC/INDEX.HTML
+
+  Arquivo que será inicializado no browser do Cordova dentro do app ou desktop
+
+- /SRC/MANIFEST.JSON
+
+  Arquivo de manifesto do Cordova. Usado para declarar componentes externos ou que
+  necessitem de permissão especial para rodar, como, por exemplo  os Plugins.
+
+- /CONFIG.XML
+
+  Arquivo de configuração do Cordova, define onde localizar os elementos como os Splashs e icones.
+
+- /IONIC.CONFIG.JSON
+
+  Configurações do Ionic, como, por exemplo o nome do App.
+
+-*** Entendendo a estrutura das paginas ***-
+
+  Cada página é composta por 3 aqruivos, HTML, TS e SCSS.
+
+  HTML -> é a estrutura fisica visual da pagina.
+  TS -> Arquivo TypeScript (pode ser js tambem) que contem o chamado code behind, ou o
+  codigo que sera vinculado a pagina, contendo as regras e escopo especificos da mesma.
+  SCSS -> Arquivo para personalização visual da pagina especificamente.
+  MODUlE.TS -> Arquivo opcional de modulo (padrao de projeto), com o objetivo de especificar objetos
+  a serem injetados na classe da pagina, alem de conter declarações e exportação de classes
+  para outros modulos.
+
+
+-*** COMANDOS ***-
+
+  ionic generate page contatos
+  ionic generate provider contatos
+
+

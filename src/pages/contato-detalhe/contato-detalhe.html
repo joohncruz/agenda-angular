@@ -16,6 +16,10 @@
 <ion-content padding>
   <form>
     <ion-item>
+      <ion-label>ID</ion-label>
+      <ion-input type="text" [(ngModel)]="contato.id" name="id"></ion-input>
+    </ion-item>
+    <ion-item>
       <ion-label>e-mail</ion-label>
       <ion-input type="text" [(ngModel)]="contato.email" name="email"></ion-input>
     </ion-item>
@@ -26,6 +30,10 @@
     <ion-item>
       <ion-label>CEP</ion-label>
       <ion-input type="text" [(ngModel)]="contato.cep" name="cep"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Endereco</ion-label>
+      <ion-input type="text" [(ngModel)]="contato.endereco" name="endereco"></ion-input>
     </ion-item>
     <button ion-button color="secundary" block (click)="confirmaContato()">Confirma</button>
     <button ion-button color="danger" block (click)="cancelaContato()">Cancela</button>

@@ -15,13 +15,14 @@ import { ContatosProvider } from '../../providers/contatos/contatos';
   templateUrl: 'contato-detalhe.html',
 })
 export class ContatoDetalhePage {
-  contato = { nome: '', endereco: '', cep: '', lat: 0, long: 0, email: '' };
+  contato = {id: '', nome: '', endereco: '', cep: '', lat: 0, long: 0, email: '' };
   cttparam: any = null;
 
   constructor (public navCtrl: NavController, public navParams: NavParams, private contatosProvider: ContatosProvider) {
     this.cttparam = navParams.get('cttParam');
 
     if (this.cttparam != null) {
+      this.contato.id = this.cttparam.id;
       this.contato.nome = this.cttparam.nome;
       this.contato.endereco = this.cttparam.endereco;
       this.contato.cep = this.cttparam.cep;
@@ -39,7 +40,7 @@ export class ContatoDetalhePage {
     const c = this.contato;
 
     if(this.cttparam != null) {
-      //edita o contato
+      this.contatosProvider.editContato(c.id, c.nome, c.endereco, c.cep, c.lat, c.long, c.email);
     } else {
       this.contatosProvider.addContato(c.nome, c.endereco, c.cep, c.lat, c.long, c.email);
     }

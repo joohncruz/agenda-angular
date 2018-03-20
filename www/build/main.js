@@ -31,10 +31,11 @@ var ContatoDetalhePage = /** @class */ (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.contatosProvider = contatosProvider;
-        this.contato = { nome: '', endereco: '', cep: '', lat: 0, long: 0, email: '' };
+        this.contato = { id: '', nome: '', endereco: '', cep: '', lat: 0, long: 0, email: '' };
         this.cttparam = null;
         this.cttparam = navParams.get('cttParam');
         if (this.cttparam != null) {
+            this.contato.id = this.cttparam.id;
             this.contato.nome = this.cttparam.nome;
             this.contato.endereco = this.cttparam.endereco;
             this.contato.cep = this.cttparam.cep;
@@ -49,7 +50,7 @@ var ContatoDetalhePage = /** @class */ (function () {
     ContatoDetalhePage.prototype.confirmaContato = function () {
         var c = this.contato;
         if (this.cttparam != null) {
-            //edita o contato
+            this.contatosProvider.editContato(c.id, c.nome, c.endereco, c.cep, c.lat, c.long, c.email);
         }
         else {
             this.contatosProvider.addContato(c.nome, c.endereco, c.cep, c.lat, c.long, c.email);
@@ -61,7 +62,7 @@ var ContatoDetalhePage = /** @class */ (function () {
     };
     ContatoDetalhePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-contato-detalhe',template:/*ion-inline-start:"D:\Projetos\github\agenda-angular\src\pages\contato-detalhe\contato-detalhe.html"*/'<!--\n\n  Generated template for the ContatoDetalhePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>contato-detalhe</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form>\n\n    <ion-item>\n\n      <ion-label>e-mail</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.email" name="email"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Nome</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.nome" name="nome"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>CEP</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.cep" name="cep"></ion-input>\n\n    </ion-item>\n\n    <button ion-button color="secundary" block (click)="confirmaContato()">Confirma</button>\n\n    <button ion-button color="danger" block (click)="cancelaContato()">Cancela</button>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Projetos\github\agenda-angular\src\pages\contato-detalhe\contato-detalhe.html"*/,
+            selector: 'page-contato-detalhe',template:/*ion-inline-start:"D:\Projetos\github\agenda-angular\src\pages\contato-detalhe\contato-detalhe.html"*/'<!--\n\n  Generated template for the ContatoDetalhePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>contato-detalhe</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form>\n\n    <ion-item>\n\n      <ion-label>ID</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.id" name="id"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>e-mail</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.email" name="email"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Nome</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.nome" name="nome"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>CEP</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.cep" name="cep"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Endereco</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.endereco" name="endereco"></ion-input>\n\n    </ion-item>\n\n    <button ion-button color="secundary" block (click)="confirmaContato()">Confirma</button>\n\n    <button ion-button color="danger" block (click)="cancelaContato()">Cancela</button>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Projetos\github\agenda-angular\src\pages\contato-detalhe\contato-detalhe.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__["a" /* ContatosProvider */]])
     ], ContatoDetalhePage);
@@ -121,10 +122,9 @@ var ContatosPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-contatos',template:/*ion-inline-start:"D:\Projetos\github\agenda-angular\src\pages\contatos\contatos.html"*/'<!--\n\n  Generated template for the ContatosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>contatos</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-searchbar placeholder="Nome do contato"></ion-searchbar>\n\n  <ion-list>\n\n    <ion-item *ngFor="let contato of contatos" (click)="editContato(contato)">\n\n      {{ contato.nome }}\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <button ion-button color="ligth" (click)="addContato()">\n\n    <ion-icon name="add-circle"></ion-icon>\n\n  </button>\n\n</ion-footer>\n\n'/*ion-inline-end:"D:\Projetos\github\agenda-angular\src\pages\contatos\contatos.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__["a" /* ContatosProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__["a" /* ContatosProvider */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__["a" /* ContatosProvider */]])
     ], ContatosPage);
     return ContatosPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=contatos.js.map
@@ -458,15 +458,31 @@ var ContatosProvider = /** @class */ (function () {
     function ContatosProvider() {
         this.pessoas = [];
         this.pessoas.push({
-            nome: 'Jonathan Cruz', endereco: 'Rua O Tronco do Ipê - 85', cep: '30640-800',
+            id: 1, nome: 'Jonathan Cruz', endereco: 'Rua O Tronco do Ipê - 85', cep: '30640-800',
             lat: -19.9679803, long: -43.9540716, email: 'joohncruzrocha@gmail.com'
         });
     }
     ContatosProvider.prototype.addContato = function (nome, endereco, cep, lat, long, email) {
-        this.pessoas.push({ nome: nome, endereco: endereco, cep: cep, lat: lat, long: long, email: email });
+        var id = this.pessoas.length + 1;
+        console.log(this.pessoas);
+        console.log(id);
+        this.pessoas.push({ id: id, nome: nome, endereco: endereco, cep: cep, lat: lat, long: long, email: email });
     };
     ContatosProvider.prototype.getContatos = function () {
         return this.pessoas;
+    };
+    ContatosProvider.prototype.editContato = function (id, nome, endereco, cep, lat, long, email) {
+        this.pessoas.forEach(function (pessoa) {
+            if (pessoa.id === id) {
+                console.log('pessoa.id === id');
+                pessoa.nome = nome;
+                pessoa.endereco = endereco;
+                pessoa.cep = cep;
+                pessoa.lat = lat;
+                pessoa.long = long;
+                pessoa.email = email;
+            }
+        });
     };
     ContatosProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),

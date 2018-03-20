@@ -15,7 +15,7 @@ import { ContatosProvider } from '../../providers/contatos/contatos';
   templateUrl: 'contato-detalhe.html',
 })
 export class ContatoDetalhePage {
-  contato: { nome: '', endereco: '', cep: '', lat: 0, long: 0, email: '' };
+  contato = { nome: '', endereco: '', cep: '', lat: 0, long: 0, email: '' };
   cttparam: any = null;
 
   constructor (public navCtrl: NavController, public navParams: NavParams, private contatosProvider: ContatosProvider) {

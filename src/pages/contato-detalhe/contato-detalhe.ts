@@ -40,9 +40,9 @@ export class ContatoDetalhePage {
     const c = this.contato;
 
     if(this.cttparam != null) {
-      this.contatosProvider.editContato(c.id, c.nome, c.endereco, c.cep, c.lat, c.long, c.email);
+      this.contatosProvider.updateContato(c.id, c.nome, c.endereco, c.cep, c.lat, c.long, c.email);
     } else {
-      this.contatosProvider.addContato(c.nome, c.endereco, c.cep, c.lat, c.long, c.email);
+      this.contatosProvider.addContato(c.id, c.nome, c.endereco, c.cep, c.lat, c.long, c.email);
     }
 
     this.navCtrl.pop();

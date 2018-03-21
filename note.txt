@@ -77,3 +77,21 @@
   ionic generate provider contatos
 
 
+-*** ANGULARFIRE ***-
+
+npm install angularfire2 firebase --save
+
+
+<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBc7DLViPGL-6s0l-qIbuvuQPIupdjxzkU",
+    authDomain: "agenda-5ab14.firebaseapp.com",
+    databaseURL: "https://agenda-5ab14.firebaseio.com",
+    projectId: "agenda-5ab14",
+    storageBucket: "",
+    messagingSenderId: "927060346644"
+  };
+  firebase.initializeApp(config);
+</script>

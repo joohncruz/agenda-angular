@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ContatosProvider } from '../../providers/contatos/contatos';
 import { ContatoDetalhePage } from '../../pages/contato-detalhe/contato-detalhe';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * Generated class for the ContatosPage page.
@@ -16,7 +17,7 @@ import { ContatoDetalhePage } from '../../pages/contato-detalhe/contato-detalhe'
   templateUrl: 'contatos.html',
 })
 export class ContatosPage {
-  contatos: Array<{nome: string, endereco: string, cep: string, lat: number, long: number, email: string}> = [];
+  contatos: Observable<any[]>;
 
   constructor (public navCtrl: NavController, public navParams: NavParams, private contatosProvider: ContatosProvider) {
     this.contatos = contatosProvider.getContatos();

@@ -1,13 +1,70 @@
 webpackJsonp([2],{
 
-/***/ 100:
+/***/ 101:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContatosProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(189);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/*
+  Generated class for the ContatosProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var ContatosProvider = /** @class */ (function () {
+    function ContatosProvider(db) {
+        this.db = db;
+        this.pessoas = db.list('pessoas').valueChanges();
+        this.pessoasRef = db.list('pessoas');
+    }
+    ContatosProvider.prototype.addContato = function (id, nome, endereco, cep, lat, long, email) {
+        this.pessoasRef.push({ id: id, nome: nome, endereco: endereco, cep: cep, lat: lat, long: long, email: email });
+    };
+    ContatosProvider.prototype.getContatos = function () {
+        return this.pessoas;
+    };
+    ContatosProvider.prototype.updateContato = function (id, nome, endereco, cep, lat, long, email) {
+        console.log('editContato');
+        var c = this.getContatoById(id);
+    };
+    ContatosProvider.prototype.getContatoById = function (id) {
+        console.log(id);
+        var pessoa = this.pessoasRef.query.orderByChild('id').equalTo(id);
+        return pessoa;
+    };
+    ContatosProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _a || Object])
+    ], ContatosProvider);
+    return ContatosProvider;
+    var _a;
+}());
+
+//# sourceMappingURL=contatos.js.map
+
+/***/ }),
+
+/***/ 133:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContatoDetalhePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__ = __webpack_require__(101);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -50,10 +107,10 @@ var ContatoDetalhePage = /** @class */ (function () {
     ContatoDetalhePage.prototype.confirmaContato = function () {
         var c = this.contato;
         if (this.cttparam != null) {
-            this.contatosProvider.editContato(c.id, c.nome, c.endereco, c.cep, c.lat, c.long, c.email);
+            this.contatosProvider.updateContato(c.id, c.nome, c.endereco, c.cep, c.lat, c.long, c.email);
         }
         else {
-            this.contatosProvider.addContato(c.nome, c.endereco, c.cep, c.lat, c.long, c.email);
+            this.contatosProvider.addContato(c.id, c.nome, c.endereco, c.cep, c.lat, c.long, c.email);
         }
         this.navCtrl.pop();
     };
@@ -64,24 +121,25 @@ var ContatoDetalhePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-contato-detalhe',template:/*ion-inline-start:"D:\Projetos\github\agenda-angular\src\pages\contato-detalhe\contato-detalhe.html"*/'<!--\n\n  Generated template for the ContatoDetalhePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>contato-detalhe</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form>\n\n    <ion-item>\n\n      <ion-label>ID</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.id" name="id"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>e-mail</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.email" name="email"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Nome</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.nome" name="nome"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>CEP</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.cep" name="cep"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Endereco</ion-label>\n\n      <ion-input type="text" [(ngModel)]="contato.endereco" name="endereco"></ion-input>\n\n    </ion-item>\n\n    <button ion-button color="secundary" block (click)="confirmaContato()">Confirma</button>\n\n    <button ion-button color="danger" block (click)="cancelaContato()">Cancela</button>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Projetos\github\agenda-angular\src\pages\contato-detalhe\contato-detalhe.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__["a" /* ContatosProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__["a" /* ContatosProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__["a" /* ContatosProvider */]) === "function" && _c || Object])
     ], ContatoDetalhePage);
     return ContatoDetalhePage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=contato-detalhe.js.map
 
 /***/ }),
 
-/***/ 101:
+/***/ 134:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContatosPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_contato_detalhe_contato_detalhe__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_contato_detalhe_contato_detalhe__ = __webpack_require__(133);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -106,7 +164,6 @@ var ContatosPage = /** @class */ (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.contatosProvider = contatosProvider;
-        this.contatos = [];
         this.contatos = contatosProvider.getContatos();
     }
     ContatosPage.prototype.ionViewDidLoad = function () {
@@ -120,18 +177,19 @@ var ContatosPage = /** @class */ (function () {
     };
     ContatosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-contatos',template:/*ion-inline-start:"D:\Projetos\github\agenda-angular\src\pages\contatos\contatos.html"*/'<!--\n\n  Generated template for the ContatosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>contatos</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-searchbar placeholder="Nome do contato"></ion-searchbar>\n\n  <ion-list>\n\n    <ion-item *ngFor="let contato of contatos" (click)="editContato(contato)">\n\n      {{ contato.nome }}\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <button ion-button color="ligth" (click)="addContato()">\n\n    <ion-icon name="add-circle"></ion-icon>\n\n  </button>\n\n</ion-footer>\n\n'/*ion-inline-end:"D:\Projetos\github\agenda-angular\src\pages\contatos\contatos.html"*/,
+            selector: 'page-contatos',template:/*ion-inline-start:"D:\Projetos\github\agenda-angular\src\pages\contatos\contatos.html"*/'<!--\n\n  Generated template for the ContatosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>contatos</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-searchbar placeholder="Nome do contato"></ion-searchbar>\n\n  <ion-list>\n\n    <ion-item *ngFor="let contato of contatos | async" (click)="editContato(contato)">\n\n      {{ contato.nome }}\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <button ion-button color="ligth" (click)="addContato()">\n\n    <ion-icon name="add-circle"></ion-icon>\n\n  </button>\n\n</ion-footer>\n\n'/*ion-inline-end:"D:\Projetos\github\agenda-angular\src\pages\contatos\contatos.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__["a" /* ContatosProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__["a" /* ContatosProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_contatos_contatos__["a" /* ContatosProvider */]) === "function" && _c || Object])
     ], ContatosPage);
     return ContatosPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=contatos.js.map
 
 /***/ }),
 
-/***/ 111:
+/***/ 145:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -144,20 +202,20 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 111;
+webpackEmptyAsyncContext.id = 145;
 
 /***/ }),
 
-/***/ 152:
+/***/ 188:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/contato-detalhe/contato-detalhe.module": [
-		273,
+		442,
 		1
 	],
 	"../pages/contatos/contatos.module": [
-		274,
+		443,
 		0
 	]
 };
@@ -172,18 +230,18 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 152;
+webpackAsyncContext.id = 188;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 196:
+/***/ 280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -212,13 +270,13 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 197:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -269,13 +327,13 @@ var ListPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 198:
+/***/ 283:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(303);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -283,22 +341,26 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 221:
+/***/ 303:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(264);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_contatos_contatos__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_contatos_contatos__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_contato_detalhe_contato_detalhe__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(427);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_contatos_contatos__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_contatos_contatos__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_contato_detalhe_contato_detalhe__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_angularfire2_auth__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__environments_environment__ = __webpack_require__(441);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -316,6 +378,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+// for AngularFireDatabase
+
+// for AngularFireAuth
+
+// environment
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -330,12 +399,15 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_11_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_14__environments_environment__["a" /* environment */].firebase),
+                __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__["b" /* AngularFireDatabaseModule */],
+                __WEBPACK_IMPORTED_MODULE_13_angularfire2_auth__["a" /* AngularFireAuthModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/contato-detalhe/contato-detalhe.module#ContatoDetalhePageModule', name: 'ContatoDetalhePage', segment: 'contato-detalhe', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/contatos/contatos.module#ContatosPageModule', name: 'ContatosPage', segment: 'contatos', priority: 'low', defaultHistory: [] }
                     ]
-                }),
+                })
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
             entryComponents: [
@@ -360,18 +432,18 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 264:
+/***/ 427:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_contatos_contatos__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_contatos_contatos__ = __webpack_require__(134);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -432,68 +504,25 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 77:
+/***/ 441:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContatosProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-/*
-  Generated class for the ContatosProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var ContatosProvider = /** @class */ (function () {
-    function ContatosProvider() {
-        this.pessoas = [];
-        this.pessoas.push({
-            id: 1, nome: 'Jonathan Cruz', endereco: 'Rua O Tronco do Ipê - 85', cep: '30640-800',
-            lat: -19.9679803, long: -43.9540716, email: 'joohncruzrocha@gmail.com'
-        });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+var environment = {
+    production: false,
+    firebase: {
+        apiKey: 'AIzaSyBc7DLViPGL-6s0l-qIbuvuQPIupdjxzkU',
+        authDomain: 'agenda-5ab14.firebaseapp.com',
+        databaseURL: 'https://agenda-5ab14.firebaseio.com',
+        projectId: 'agenda-5ab14',
+        storageBucket: '',
+        messagingSenderId: '927060346644'
     }
-    ContatosProvider.prototype.addContato = function (nome, endereco, cep, lat, long, email) {
-        var id = this.pessoas.length + 1;
-        console.log(this.pessoas);
-        console.log(id);
-        this.pessoas.push({ id: id, nome: nome, endereco: endereco, cep: cep, lat: lat, long: long, email: email });
-    };
-    ContatosProvider.prototype.getContatos = function () {
-        return this.pessoas;
-    };
-    ContatosProvider.prototype.editContato = function (id, nome, endereco, cep, lat, long, email) {
-        this.pessoas.forEach(function (pessoa) {
-            if (pessoa.id === id) {
-                console.log('pessoa.id === id');
-                pessoa.nome = nome;
-                pessoa.endereco = endereco;
-                pessoa.cep = cep;
-                pessoa.lat = lat;
-                pessoa.long = long;
-                pessoa.email = email;
-            }
-        });
-    };
-    ContatosProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [])
-    ], ContatosProvider);
-    return ContatosProvider;
-}());
-
-//# sourceMappingURL=contatos.js.map
+};
+//# sourceMappingURL=environment.js.map
 
 /***/ })
 
-},[198]);
+},[283]);
 //# sourceMappingURL=main.js.map

@@ -15,11 +15,10 @@
 
 </ion-header>
 
-
 <ion-content padding>
   <ion-searchbar placeholder="Nome do contato"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let contato of contatos" (click)="editContato(contato)">
+    <ion-item *ngFor="let contato of contatos | async" (click)="editContato(contato)">
       {{ contato.nome }}
     </ion-item>
   </ion-list>
